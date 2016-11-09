@@ -1,9 +1,11 @@
-package io;
+package revise;
 
 import java.io.File;
 import java.io.IOException;
 
 import org.junit.Test;
+
+import io.StringFileWriter;
 
 import static junit.framework.TestCase.assertTrue;
 
@@ -20,8 +22,8 @@ public class WriterPerformanceTest {
         // arrange
         String filename = "src/test/resources/testWriterPerformance";
         File file = new File(filename);
-        Writer writer = new Writer(file);
-        String message = "hello" + Constants.N + "world";
+        StringFileWriter writer = new StringFileWriter(file);
+        String message = "hello world";
         long timestampStart;
         long timestampEnd;
         long timeDelta;

@@ -1,10 +1,13 @@
-package io;
+package revise;
 
 import java.io.File;
 import java.io.IOException;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import io.StringFileReader;
+import io.StringFileWriter;
 
 import static junit.framework.TestCase.assertTrue;
 
@@ -21,10 +24,10 @@ public class ReaderPerformanceTest {
         String filename = FILENAMELARGE;
         File file = new File(filename);
         if (!file.exists()) {
-            Writer writer = new Writer(file);
+            StringFileWriter writer = new StringFileWriter(file);
             int max = 1000000;
             for ( int i = 0; i < max; i++) {
-                writer.write("Text" + i + Constants.N);
+                writer.write("Text" + i + ".N");
             }
             writer.close();
         }
@@ -36,9 +39,9 @@ public class ReaderPerformanceTest {
         String filename = FILENAMELARGE;
         File file = new File(filename);
         long timestampStart;
-        Reader reader = null;
+        StringFileReader reader = null;
         try {
-            reader = new Reader(file);
+            reader = new StringFileReader(file);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -47,7 +50,7 @@ public class ReaderPerformanceTest {
 
         // act
         timestampStart = System.nanoTime();
-        reader.readOneLine();
+//        reader.readOneLine();
         timestampEnd = System.nanoTime();
         timeDelta = timestampEnd - timestampStart;
 
@@ -61,9 +64,9 @@ public class ReaderPerformanceTest {
         String filename = FILENAMELARGE;
         File file = new File(filename);
         long timestampStart;
-        Reader reader = null;
+        StringFileReader reader = null;
         try {
-            reader = new Reader(file);
+            reader = new StringFileReader(file);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -72,12 +75,12 @@ public class ReaderPerformanceTest {
 
         // act
         timestampStart = System.nanoTime();
-        try {
+/*        try {
             reader.readAllLines();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        timestampEnd = System.nanoTime();
+*/        timestampEnd = System.nanoTime();
         timeDelta = timestampEnd - timestampStart;
 
         // assert
